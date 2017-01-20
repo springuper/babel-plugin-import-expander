@@ -1,0 +1,35 @@
+{
+  "name": "babel-plugin-import-resolver",
+  "version": "0.1.0",
+  "description": "resolve import to specific file",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/springuper/babel-plugin-import-resolver.git"
+  },
+  "keywords": [
+    "babel",
+    "plugin",
+    "import",
+    "resolve"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "mocha": "^3.2.0"
+  },
+  "author": "springuper@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/springuper/babel-plugin-import-resolver/issues"
+  },
+  "homepage": "https://github.com/springuper/babel-plugin-import-resolver#readme"
+}
