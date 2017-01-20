@@ -1,5 +1,7 @@
 # babel-plugin-import-resolver
 
+[![Build Status](https://travis-ci.org/springuper/babel-plugin-import-resolver.svg?branch=master)](https://travis-ci.org/springuper/babel-plugin-import-resolver)
+
 Resolve import to specific file.
 
 ## Example
@@ -26,16 +28,34 @@ $ npm install babel-plugin-import-resolver
 
 ## Usage
 
+#### Via `.babelrc` (Recommended)
+
+```js
+{
+  "plugins": [
+    ["import-resolver", {
+      "condition": "^(\\.|\\/).*\\/components$",
+      "template": "{source}/{name}/{name}"
+    }]
+  ]
+}
+```
+
+There are two options:
+
+- `condition` (`String` or `[String]`)
+
+  One or multiple string format regular expressions, if the source of ImportDeclaration matches any of them, it will be replaced by the following `template`. 
+- `template` (`String`)
+
+  Used to replace hit source with a simple variable placeholder presentation. There are mainly two variable placeholders: `{source}` represents the source of ImportDeclaration, and `{name}` represents imported name.
+
 #### Via Node API
 
 ```js
 require('babel-core').transform('code', {
   plugins: ['import-resolver', {
-    locate: (name, source) => {
-      if (source.match(/^(\.|\/).*\/components$/)) {
-        return `${source}/${name}/${name}`;
-      }
-      return source;
-    },
+    condition: '^(\\.|\\/).*\\/components$', // string format regular expression
+    template: '{source}/{name}/{name}', // template variables (wrapped in braces) will be replaced
   }],
 });

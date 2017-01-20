@@ -1,27 +1,49 @@
 const { dirname } = require('path');
 
+const regCache = {};
+const getReg = (str) => {
+  if (!regCache[str]) {
+    regCache[str] = new RegExp(str);
+  }
+  return regCache[str];
+};
+const regTplVariable = /\{([^}]+)\}/g;
+const genContent = (tpl, data) => {
+  return tpl.replace(regTplVariable, (match, variable) => data[variable] || '');
+};
+
 function transformImportResolve({ types: t }) {
   function resolver(
     path,
     {
       file: { opts: { filename } },
-      opts: { locate },
+      opts: { condition, template },
     }
   ) {
     const { node } = path;
     // path maybe removed by prev instances
     if (!node) return;
 
-    const { value } = node.source;
+    const source = node.source.value;
     const specificImports = [];
     node.specifiers.forEach(spec => {
       if (!t.isImportSpecifier(spec)) return;
 
-      const location = locate(spec.imported.name, value, filename);
-      specificImports.push(t.importDeclaration(
-        [t.importDefaultSpecifier(t.identifier(spec.local.name))],
-        t.stringLiteral(location))
-      );
+      const conditions = Array.isArray(condition) ? condition : [condition];
+      const isHit = conditions.some(cond => source.match(getReg(cond)));
+      if (!isHit) return;
+
+      const location = genContent(template, {
+        name: spec.imported.name,
+        source,
+        filename,
+      });
+      if (location && location !== source) {
+        specificImports.push(t.importDeclaration(
+          [t.importDefaultSpecifier(t.identifier(spec.local.name))],
+          t.stringLiteral(location))
+        );
+      }
     });
 
     if (specificImports.length) {

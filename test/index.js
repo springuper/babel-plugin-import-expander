@@ -11,7 +11,7 @@ function trim(str) {
 describe('Resolve import paths for named dependencies', () => {
   const fixturesDir = path.join(__dirname, 'fixtures');
   fs.readdirSync(fixturesDir).map((caseName) => {
-    it(`should ${caseName.split('-').join(' ')}`, () => {
+    it(`should handle "${caseName.split('-').join(' ')}"`, () => {
       const fixtureDir = path.join(fixturesDir, caseName);
       const actualPath = path.join(fixtureDir, 'actual.js');
       const actual = transformFileSync(actualPath, {
@@ -19,12 +19,8 @@ describe('Resolve import paths for named dependencies', () => {
           [
             plugin,
             {
-              locate: (name, source, filename) => {
-                if (source.match(/^(\.|\/).*\/components$/)) {
-                  return `${source}/${name}/${name}`;
-                }
-                return source;
-              },
+              condition: '^(\\.|\\/).*\\/components$',
+              template: '{source}/{name}/{name}',
             },
           ],
         ],
