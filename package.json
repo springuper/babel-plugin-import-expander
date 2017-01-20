@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-import-resolver",
   "version": "0.1.1",
-  "description": "resolve import to specific file",
+  "description": "Resolve multiple members import to specific module import",
   "main": "src/index.js",
   "directories": {
     "test": "test"

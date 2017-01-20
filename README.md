@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/springuper/babel-plugin-import-resolver.svg?branch=master)](https://travis-ci.org/springuper/babel-plugin-import-resolver)
 
-Resolve import to specific file.
+Resolve multiple members import to specific module import, mainly for leverage the performance of importing a couple of react components.
 
 ## Example
 
@@ -55,7 +55,7 @@ There are two options:
 ```js
 require('babel-core').transform('code', {
   plugins: ['import-resolver', {
-    condition: '^(\\.|\\/).*\\/components$', // string format regular expression
-    template: '{source}/{name}/{name}', // template variables (wrapped in braces) will be replaced
+    condition: '^(\\.|\\/).*\\/components$',
+    template: '{source}/{name}/{name}',
   }],
 });
