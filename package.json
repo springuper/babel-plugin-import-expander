@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-import-resolver",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "resolve import to specific file",
   "main": "src/index.js",
   "directories": {
