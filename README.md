@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/springuper/babel-plugin-import-resolver.svg?branch=master)](https://travis-ci.org/springuper/babel-plugin-import-resolver)
 
-Resolve multiple members import to specific module import, mainly for leverage the performance of importing a couple of react components.
+Resolve multiple members import to specific module import, mainly for leveraging the performance of importing a couple of react components.
 
 ## Example
 
