@@ -10,7 +10,7 @@ function trim(str) {
 
 describe('Resolve import paths for named dependencies', () => {
   const fixturesDir = path.join(__dirname, 'fixtures');
-  fs.readdirSync(fixturesDir).map((caseName) => {
+  fs.readdirSync(fixturesDir).forEach((caseName) => {
     it(`should handle "${caseName.split('-').join(' ')}"`, () => {
       const fixtureDir = path.join(fixturesDir, caseName);
       const actualPath = path.join(fixtureDir, 'actual.js');

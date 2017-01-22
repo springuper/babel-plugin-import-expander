@@ -1,17 +1,18 @@
 {
-  "name": "babel-plugin-import-resolver",
+  "name": "babel-plugin-import-expander",
   "version": "0.1.2",
-  "description": "Resolve multiple members import to specific module import",
+  "description": "Expand multiple members `import` to specific module `import`",
   "main": "src/index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "lint": "eslint src/**/*.js test/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/springuper/babel-plugin-import-resolver.git"
+    "url": "git+https://github.com/springuper/babel-plugin-import-expander.git"
   },
   "keywords": [
     "babel",
@@ -21,15 +22,19 @@
   ],
   "devDependencies": {
     "babel-cli": "^6.16.0",
+    "babel-core": "^6.22.1",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "eslint": "^3.14.0",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0",
     "mocha": "^3.2.0"
   },
   "author": "springuper@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/springuper/babel-plugin-import-resolver/issues"
+    "url": "https://github.com/springuper/babel-plugin-import-expander/issues"
   },
-  "homepage": "https://github.com/springuper/babel-plugin-import-resolver#readme"
+  "homepage": "https://github.com/springuper/babel-plugin-import-expander#readme"
 }

@@ -1,8 +1,8 @@
-# babel-plugin-import-resolver
+# babel-plugin-import-expander
 
-[![Build Status](https://travis-ci.org/springuper/babel-plugin-import-resolver.svg?branch=master)](https://travis-ci.org/springuper/babel-plugin-import-resolver)
+[![Build Status](https://travis-ci.org/springuper/babel-plugin-import-expander.svg?branch=master)](https://travis-ci.org/springuper/babel-plugin-import-expander)
 
-Resolve multiple members import to specific module import, mainly for leverage the performance of importing a couple of react components.
+Expand multiple members `import` to specific module `import`, mainly for performance concerns.
 
 ## Example
 
@@ -23,7 +23,7 @@ import D from '../components/C/C';
 ## Installation
 
 ```bash
-$ npm install babel-plugin-import-resolver
+$ npm install babel-plugin-import-expander
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ $ npm install babel-plugin-import-resolver
 ```js
 {
   "plugins": [
-    ["import-resolver", {
+    ["import-expander", {
       "condition": "^(\\.|\\/).*\\/components$",
       "template": "{source}/{name}/{name}"
     }]
@@ -54,7 +54,7 @@ There are two options:
 
 ```js
 require('babel-core').transform('code', {
-  plugins: ['import-resolver', {
+  plugins: ['import-expander', {
     condition: '^(\\.|\\/).*\\/components$',
     template: '{source}/{name}/{name}',
   }],
