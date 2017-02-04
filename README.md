@@ -1,6 +1,7 @@
 # babel-plugin-import-expander
 
 [![Build Status](https://travis-ci.org/springuper/babel-plugin-import-expander.svg?branch=master)](https://travis-ci.org/springuper/babel-plugin-import-expander)
+[![npm version](https://badge.fury.io/js/babel-plugin-import-expander.svg)](https://badge.fury.io/js/babel-plugin-import-expander)
 
 Expand multiple members `import` to specific module `import`, mainly for performance concerns.
 
