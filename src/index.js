@@ -15,7 +15,7 @@ function transformImportResolve({ types: t }) {
     path,
     {
       file: { opts: { filename } },
-      opts: { condition, template },
+      opts,
     }
   ) {
     const { node } = path;
@@ -27,9 +27,14 @@ function transformImportResolve({ types: t }) {
     node.specifiers.forEach((spec) => {
       if (!t.isImportSpecifier(spec)) return;
 
-      const conditions = Array.isArray(condition) ? condition : [condition];
-      const isHit = conditions.some(cond => source.match(getReg(cond)));
-      if (!isHit) return;
+      const rules = Array.isArray(opts) ? opts: [opts];
+      let template;
+      rules.some((rule) => {
+        if (source.match(getReg(rule.condition))) {
+          template = rule.template;
+        }
+      });
+      if (!template) return;
 
       const location = genContent(template, {
         name: spec.imported.name,

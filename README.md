@@ -41,9 +41,9 @@ $ npm install babel-plugin-import-expander
 }
 ```
 
-There are two options:
+Options can be one object or a list of objects, each object has two properties:
 
-- `condition` (`String` or `[String]`)
+- `condition` (`String`)
 
   One or multiple string format regular expressions, if the source of ImportDeclaration matches any of them, it will be replaced by the following `template`. 
 - `template` (`String`)
@@ -59,3 +59,4 @@ require('babel-core').transform('code', {
     template: '{source}/{name}/{name}',
   }],
 });
+```
