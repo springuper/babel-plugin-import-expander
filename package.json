@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-import-expander",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Expand multiple members `import` to specific module `import`",
   "main": "src/index.js",
   "directories": {
