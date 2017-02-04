@@ -27,12 +27,12 @@ function transformImportResolve({ types: t }) {
     node.specifiers.forEach((spec) => {
       if (!t.isImportSpecifier(spec)) return;
 
-      const rules = Array.isArray(opts) ? opts: [opts];
+      const rules = Array.isArray(opts) ? opts : [opts];
       let template;
       rules.some((rule) => {
-        if (source.match(getReg(rule.condition))) {
-          template = rule.template;
-        }
+        if (!source.match(getReg(rule.condition))) return false;
+        template = rule.template;
+        return true;
       });
       if (!template) return;
 
