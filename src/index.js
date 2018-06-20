@@ -58,16 +58,14 @@ function transformImportResolve({ types: t }) {
     ImportDeclaration: resolver,
   };
 
-  const visitor = {
-    Program: {
-      enter(programPath, state) {
-        programPath.traverse(importVisitors, state);
+  return {
+    visitor: {
+      Program: {
+        enter(programPath, state) {
+          programPath.traverse(importVisitors, state);
+        },
       },
     },
-  };
-
-  return {
-    visitor,
   };
 }
 
