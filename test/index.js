@@ -8,8 +8,9 @@ function trim(str) {
   return str.replace(/^\s+|\s+$/, '');
 }
 
-describe('Resolve import paths for named dependencies', () => {
+describe('should resolve import paths for named dependencies', () => {
   const fixturesDir = path.join(__dirname, 'fixtures');
+
   fs.readdirSync(fixturesDir).forEach((caseName) => {
     it(`should handle "${caseName.split('-').join(' ')}"`, () => {
       const fixtureDir = path.join(fixturesDir, caseName);
@@ -19,16 +20,16 @@ describe('Resolve import paths for named dependencies', () => {
           [
             plugin,
             {
-              condition: '^(\\.|\\/).*\\/components$',
-              template: '{source}/{name}/{name}',
+              rules: {
+                condition: '^(\\.|\\/).*\\/components$',
+                template: '{source}/{name}/{name}',
+              },
             },
           ],
         ],
       }).code;
 
-      const expected = fs.readFileSync(
-          path.join(fixtureDir, 'expected.js')
-      ).toString();
+      const expected = fs.readFileSync(path.join(fixtureDir, 'expected.js')).toString();
 
       assert.equal(trim(actual), trim(expected));
     });

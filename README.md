@@ -24,7 +24,7 @@ import D from '../components/C/C';
 ## Installation
 
 ```bash
-$ npm install babel-plugin-import-expander
+$ npm install babel-plugin-import-expander --save-dev
 ```
 
 ## Usage
@@ -35,29 +35,35 @@ $ npm install babel-plugin-import-expander
 {
   "plugins": [
     ["import-expander", {
-      "condition": "^(\\.|\\/).*\\/components$",
-      "template": "{source}/{name}/{name}"
+      "rules": {
+        "condition": "^(\\.|\\/).*\\/components$",
+        "template": "{source}/{name}/{name}"
+      }
     }]
   ]
 }
 ```
 
-Options can be one object or a list of objects, each object has two properties:
+- `rules`
 
-- `condition` (`String`)
+  Options can be one object or a list of objects, each object has two properties:
 
-  One or multiple string format regular expressions, if the source of ImportDeclaration matches any of them, it will be replaced by the following `template`. 
-- `template` (`String`)
+  - `condition`
 
-  Used to replace hit source with a simple variable placeholder presentation. There are mainly two variable placeholders: `{source}` represents the source of ImportDeclaration, and `{name}` represents imported name.
+    One or multiple string format regular expressions, if the source of ImportDeclaration matches any of them, it will be replaced by the following `template`. 
+  - `template`
+
+    Used to replace hit source with a simple variable placeholder presentation. There are mainly two variable placeholders: `{source}` represents the source of ImportDeclaration, and `{name}` represents imported name.
 
 #### Via Node API
 
 ```js
 require('babel-core').transform('code', {
   plugins: ['import-expander', {
-    condition: '^(\\.|\\/).*\\/components$',
-    template: '{source}/{name}/{name}',
+    rules: {
+      condition: '^(\\.|\\/).*\\/components$',
+      template: '{source}/{name}/{name}'
+    }
   }],
 });
 ```
